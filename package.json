@@ -1,5 +1,5 @@
 {
-  "name": "react-javascript",
+  "name": "Viober",
   "version": "1.0.0",
   "type": "module",
   "description": "React TypeScript on Replit, using Vite bundler",
@@ -19,5 +19,17 @@
     "react-dom": "^18.2.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.4",
+    "axios": "^1.7.9",
+    "react-hook-form": "^7.54.2",
+    "react-query": "^3.39.3",
+    "react-router": "^7.1.5",
+    "react-router-dom": "^7.1.5",
+    "redux-toolkit": "^1.1.2",
+    "sass": "^1.85.0"
   }
 }
