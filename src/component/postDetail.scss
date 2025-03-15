@@ -1,0 +1,172 @@
+.postDetail {
+  width: 100%;
+  padding: 5px;
+}
+.postNav{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 60px;
+  
+  
+}
+.post-comment {
+  padding-bottom: 50px;
+}
+.tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.tooltip.hidden {
+  opacity: 0;
+}
+.comment-input {
+  width: 100%;
+  display: flex;
+  height: auto;
+}
+.comment-input input {
+  margin-right: 10px;
+  width: 100%;
+  height: 30px;
+  border-radius: 15px;
+  border: 0.5px solid black;
+  padding: 5px;
+  outline: none;
+}
+.comment-input button {
+  outline: none; 
+  border: none;
+  padding: 5px;
+  background-color: #4169E1;
+  color: white;
+border-radius: 10px;
+  width: 120px;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+}
+  .upload-btn {
+    width: 50px;
+    height: 50px;
+    background-image: url("./image.png"); // Đường dẫn ảnh làm nút
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    
+    
+  }
+
+  input[type="file"] {
+   display: none;
+  }
+
+  .preview {
+    margin-top: 10px;
+    
+  }
+.preview img, video {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid black;
+}
+.post-image-video img {
+  margin-right: 10px;
+}
+.postNav .goback img {
+  width: 55px;
+  
+}
+.post-posting {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+.post-comment {
+  width: 100%;
+ display: flex;
+ flex-direction: column;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+.comment-item {
+  display: flex;
+   margin-top: 40px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+.comment-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.comment-item .comment-box {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin-left: 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+ 
+}
+.post-comment .comment-item .comment-box .comment-chat {
+  padding: 10px;
+  border-radius: 10px;
+  background: #d4d4d4;
+  color: black;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  width: 250px;
+
+
+}
+.post-comment .comment-item .comment-box .comment-chat1 {
+  padding: 10px;
+  border-radius: 10px;
+  background: #d4d4d4;
+  color: black;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  width: 180px;
+
+
+}
+.comment-item .comment-box .comment-feature {
+  dispay: flex;
+  
+}
+.comment-item .comment-box .comment-feature button {
+   margin-left: 30px;
+  outline: none;
+  border: none;
+  color: white;
+  background: #4169E1;
+  height: 30px;
+  width: 70px;
+  padding: 5px;
+  border-radius: 5px;
+}

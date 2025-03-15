@@ -1,0 +1,142 @@
+.homePage {
+  width: 100%;
+  padding-bottom: 120px;
+}
+.upload-container {
+  display: flex;
+  flex-direction: column;
+}
+  .upload-btn {
+    width: 50px;
+    height: 50px;
+    background-image: url("./image.png"); // Đường dẫn ảnh làm nút
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    
+    
+  }
+
+  input[type="file"] {
+   display: none;
+  }
+
+  .preview {
+    margin-top: 10px;
+    
+  }
+.preview img, video {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid black;
+}
+
+.postNumber {
+  display: flex;
+}
+.copy-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.copy-btn:hover {
+  background-color: #0056b3;
+}
+
+.tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+.post-feature {
+  z-index: 15px;
+}
+.tooltip.hidden {
+  opacity: 0;
+}
+.postNumber span {
+  padding: 5px;
+  font-size: 21px;
+}
+.post-content {
+
+  width: 100%;
+  border-radius: 5px;
+  height: 800px;
+}
+.post-create {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.post-user {
+  display: flex;
+}
+.post-user img {
+  width: 60px;
+  border-radius: 50%;
+}
+.post-user h3 {
+  margin-left: 10px;
+  margin-bottom: 1px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.post-user span {
+  font-size: 12px;
+  margin-left: 10px;
+}
+.postInput {
+  display: flex;
+  height: auto;
+}
+.postInput input {
+   width: 100%;
+  height: 40px;
+  border: none;
+
+}
+.postInput::focus {
+  border: none;
+}
+.postInput button {
+  width: 0px;
+  border: none;
+  background: white;
+  
+
+}
+.post-image-video img {
+  margin-right: 10px;
+}
+.post-posting {
+  background: white;
+  height: auto;
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  z-index: 10;
+}

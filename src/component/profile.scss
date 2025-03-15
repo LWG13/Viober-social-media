@@ -1,0 +1,169 @@
+@font-face {
+  font-family: Poppins;
+  src: url("./bold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url("./light.ttf");
+  font-weight: 300;
+}
+.profile8 {
+  margin-top: 80px;
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 150px;
+}
+.profile8 .profile-box {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+.profile-content {margin-top: 10px;}
+.profile8 .profile-box img {
+  border-radius: 50%;
+  width: 120px;
+  padding: 10px;
+}
+.profile8 .profile-box .profile-info{
+  
+}
+.profile8 .profile-box .postNav{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.profile8 .profile-box .postNav .goback img {
+  width: 55px;
+}
+
+.group{
+  display: flex;
+}
+.group .buttonGroup {
+  display: flex;
+  padding-top: 50px;
+}
+.postNumber {
+  display: flex;
+}
+.postNumber span {
+  padding: 5px;
+  font-size: 21px;
+}
+.post-content {
+
+  width: 100%;
+  border-radius: 5px;
+  height: 800px;
+}
+.post-create {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.post-user {
+  display: flex;
+}
+.post-user img {
+  width: 60px;
+  border-radius: 50%;
+}
+.post-user h3 {
+  margin-left: 10px;
+  margin-bottom: 1px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.post-user span {
+  font-size: 12px;
+  margin-left: 10px;
+}
+.postInput {
+   width: 80%;
+  height: 50px;
+  border: none;
+  border-bottom: 2px solid black;
+}
+.postInput::focus {
+  border: none;
+  border-bottom: 2px solid black;
+}
+.post-create .send {
+  width: 40px;
+  margin-left: 20px;
+  
+  
+
+}
+.post-image-video img {
+
+  margin-right: 10px;
+}
+.post-posting {
+  background: white;
+  height: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.info {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+.description {
+  height: 200px;
+}
+.buttonGroup button {
+  width: 120px;
+  height: 40px;
+}
+.profile8 .profile-box .profile-info h2 {
+  font-size: 30px;
+}
+.profile8 .profile-box .profile-info p {
+  font-size: 19px;
+}
+.post-feature {
+  display: flex;
+}
+.post-feature img {
+  margin-right: 30px;
+  
+}
+.friend-list {
+  
+}
+.friend-list .userFriend {
+  background: #4169E1;
+  width: 100%;
+  height: 90px;
+  border-radius: 5px;
+}
+@media only screen and (max-width: 500px) {
+  .profile8 .profile-box{
+    flex-direction: column;
+  }
+  .group {
+    flex-direction: column;
+  }
+  .profile8 .profile-box img {
+      width: 150px;
+  }
+}
+@media only screen and (min-width: 500px ) {
+  .group .buttonGroup {
+  margin-left: 40%;
+  }
+}

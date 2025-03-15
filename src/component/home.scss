@@ -1,0 +1,79 @@
+
+@font-face {
+  font-family: Poppins;
+  src: url("./bold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url("./light.ttf");
+  font-weight: 300;
+}
+
+.homepage {
+  margin-top: 94px;
+  background: #d4d4d4;
+  font-family: "Poppins", sans-serif;
+}
+.left{
+  top: 0;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  margin-top: 100px;
+  z-index: 0;
+  
+}
+.left .menu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px;
+  font-family: "Poppins", sans-serif;
+}
+.left .menu .user {
+  display: flex; 
+  width: 100%;
+  padding: 5px;
+}
+.left .menu .user img {
+  width: 40px;
+  border-radius: 50%;
+}
+.left .menu .menu-item {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  margin-top: 30px;
+}
+.left .menu .menu-item img { 
+  width: 35px;
+}
+.left .menu .menu-item span {
+  font-size: 18px;
+  margin-top: 11px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+.left .menu .user span {
+ font-size: 20px;
+ margin-top: 7px;
+margin-left: 10px;
+}
+.mid{
+  height: 100vh;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+}
+.right{
+  height: 100vh;
+  width: 100%;
+}
+@media only screen and (max-width: 600px) {
+  .left{
+    display: none;
+  }
+  .right{
+    display: none;
+  }
+}

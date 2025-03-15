@@ -1,12 +1,23 @@
+@font-face {
+  font-family: Poppins;
+  src: url("./bold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url("./light.ttf");
+  font-weight: 300;
+}
 .navigation{
   width: 100%;
-  background-color: #3F00FF;
+  background-color: #4169E1;
   color: white;
-  height: 100px;
+  height: 90px;
   display: flex;
-  padding: 1px;
+  padding: 5px;
   justify-content: space-between;
   align-items: center;
+  font-family: "Poppins", sans-serif;
   color: white;
   top: 0;
   left: 0;
@@ -14,14 +25,31 @@
   transition: 0.3s;
   z-index: 9999;
 }
-.navigation .logo {
-  width: 100px;
+.outlet {
+  width: 100%;
 }
+.navigation .logo {
+  width: 150px;
+  padding: 5px;
+}
+.navigation .asset {
+  width:35px;
+  margin-left: 17px;
+}
+.chat {
+  width: 39px;
+  margin-left: 17px;
+}
+.navigation .searchWhite {
+  width: 25px;
+  margin-left: 17px;
+}
+
 .grid{
   width: 100%;
   display: flex;
-  height: 100px;
-  background: #3F00FF;
+  height: 90px;
+  background: #4169E1;
   top:0;
   right: 0;
   left: 0;
@@ -30,8 +58,118 @@
   justify-content: center;
   align-items: center;
 }
+.navi-mobile{
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 3;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  background: #4169E1;
+  color: white;
+  height: 60px;
+  flex: 1;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.navi-mobile .item {
+  text-decoration: none;
+  align-items: center;
+  text-align: center;
+  font-weight: 400;
+  font-size: 15px;
+  flex-direction: column;
+  width: 32%;
+  display: flex;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  padding: 5px;
+  color: white;
+}
+.navi-mobile .item:hover {
+  background-color: blue;
+}
+.item img {
+  width: 25px;
+  
+}
+.profile{
+  border-radius: 50%;
+  width: 30px;
+}
+.profile1{
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 60px;
+  margin-left: 20px;
+}
   @media only screen and (min-width: 1250px) {
   .navigation{
     width: 1250px;
   }
+  .outlet{
+   width: 1250px;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .navigation .searchWhite{
+    display: none;
+  }
+  .navi-mobile {
+    display: none;
+  }
+}
+.search{
+    display:flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 10px;
+    border-radius: 30px;
+    width: 30%;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .navigation .logo {
+    width: 115px;
+  }
+  .profile1 {
+    display: none;
+  }
+  .navigation .searchWhite {
+     width: 21px;
+  }
+  .navigation{
+    height: 60px;
+  }
+  .navigation .asset {
+    width: 22px;
+  }
+  .chat{
+    width: 22px;
+ 
+  }
+  .group{
+    display: none;
+  }
+  .search {
+    display: none;
+  }
+}
+.search img {
+  width: 25px;
+
+}
+.search input{
+    background: transparent;
+    padding: 3px;
+    border: 0;
+    outline: 0;
+    color: black;
+    width: 100%;
+    font-size: 18px;
+    height: 20px;
 }
