@@ -47,7 +47,7 @@ export default function PostDetail() {
   const handleFileChange = async (e) => {
   const file = e.target.files[0];
   if (!file) return;
-  
+
   // Lấy MIME type và đuôi file
   const mimeType = file.type;
   const fileName = file.name;
@@ -70,9 +70,9 @@ export default function PostDetail() {
   reader.readAsDataURL(file);
   reader.onloadend = () => {
     setMedia(reader.result); // Lưu file dưới dạng Base64
-  
+
  }
- 
+
 };
   const { data : comment } = useQuery({
     queryKey: ["comment", id.postId],
@@ -111,7 +111,7 @@ const handleReply = async (id) => {
     setIsReplying(false); // Cho phép gửi request tiếp
   }
 };
-  
+
   const handleSubmit = () => {
     dispatch(commentPost(userData))
     setContent("")
@@ -122,7 +122,7 @@ const handleReply = async (id) => {
   console.log(data)
   return(
     <div className="postDetail">
-    
+
       <div className="post-posting"  key={data?.data._id}>
         <div className="postNav" >
           <Link to="/" className="goback" >
@@ -136,10 +136,10 @@ const handleReply = async (id) => {
                 <div >
                 <h3>{data?.data.usernamePost}</h3>
                 <span>{formatDate(data?.data.createdAt)}</span>
-                
+
                 </div>
-                
-              
+
+
                </div>
               <Post content={data?.data.content} />
               {data?.data.type === "image" ?
@@ -156,11 +156,11 @@ const handleReply = async (id) => {
                 <span>{data?.data?.dislikes?.length}</span>
                <img src={dislike} alt="dislike" width="25px" height="25px" onClick={() => dispatch(dislikePost({postId: data?.data._id, userId: auth._id}))} />
                 </div>
-               
+
                <img src={comment1} alt="link" width="25px" height="25px" />
                 <CopyLinkButton postId={data?.data._id} setCopied={setCopied} copied={copied} />
                 <img src={bookmark} alt="bookmark" width="25px" height="25px" />
-                
+
               </div>
             <br/>
             <hr/>
@@ -171,7 +171,7 @@ const handleReply = async (id) => {
                 <button onClick={handleSubmit}>Post</button>
               </div>
               <div className="post-image-video" >
-              
+
               <div className="upload-container">
                 <label className="upload-btn">
                    <input type="file" accept="image/*,video/*" onChange={handleFileChange} />
@@ -200,11 +200,11 @@ const handleReply = async (id) => {
                 <span>{formatDate(comment.createdAt)}</span>
                 <button onClick={() => toggleReply(comment._id)} >Reply</button>
                </div>
-                 
+
                  {reply[comment._id] && ( 
                  <div className="comment-input" >
                    <input type="text" placeholder="Write a comment" value={content1} onChange={e => setContent1(e.target.value)} />
-                    <button onClick={handleReply(comment._id)} >Post</button>
+                    <button onClick={() => handleReply(comment._id)} >Post</button>
                   </div>
     )}
                  {comment.replies?.map(com => (
@@ -217,21 +217,21 @@ const handleReply = async (id) => {
                   </div>
                   <div className="comment-feature" >
                    <span>{formatDate(com.createdAt)}</span>
-                   
+
                   </div>
                   </div>
                  </div>
-                 
+
                 ))}
                </div>
                </div>
               ))}
 
-        
+
             </div>
             </div>
-            
-      
+
+
     </div>
   )
 }
