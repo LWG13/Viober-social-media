@@ -108,7 +108,7 @@ export default function Profile() {
               <div className="postNav" >
                 <Link to="/" className="goback">
                  <img src={back} alt="go back"  />
-                 
+
                 </Link>
                 <img src={dot3} alt="dot" className="dot3" onClick={() => setMenu(true)} ref={settingRef}/>
                 {menu ? <Setting setting={settingRef} /> : null}
@@ -130,7 +130,7 @@ export default function Profile() {
           </div>
          : null}
      </div>
-      
+
      </div>
      <div className="profile-content">
       <Grid container spacing={2}>
@@ -145,7 +145,7 @@ export default function Profile() {
               {editDesc ? (<div style={{height: "100%"}}><textarea type="text" placeholder="Edit your description" value={desc} style={{width:"100%" ,height:"200px", border: "1px solid black", padding: "10px", borderRadius: "10px"}} onChange={e => setDesc(e.target.value)} /> <button onClick={() => handleEditDesc()} style={{width: "90px", height: "40px",outline: "none", border: "none", background: "#4169E1", color: "white", borderRadius: "5px" }}>Edit</button> </div> ): <Post content={data?.data?.desc} /> }
             <p>{data?.data?.desc?.length}</p>
             <br/>
-           
+
             </div>
              <p style={{color: "red"}}>{auth.editError}</p>
             <hr/>
@@ -159,9 +159,9 @@ export default function Profile() {
                 <Grid item xs={4} sm={4} md={4} lg={4} >
                 <Link to={`/profile/${fri.user1 === data?.data?._id ? fri.user2 : fri.user1}`} className="userFriend">
                   {fri.image1 === data?.data?.image ? <img src={fri.image2} /> : <img src={fri.image1}  /> }
-                   
+
                   { fri.username1 === data?.data?.username ? <p>{fri.username2} </p> : <p>{fri.username1}</p> }
-                                    
+
                 </Link>
                 </Grid>
                 ))}
@@ -184,7 +184,7 @@ export default function Profile() {
                 <div >
                 <p>{post.usernamePost}</p>
                 <span>{formatDate(post.createdAt)}</span>
-                
+
                 </div>
               </Link>
               {data?.data?._id === auth._id ?  (
@@ -192,7 +192,7 @@ export default function Profile() {
               <img src={edit} alt="dot" className="dot"  style={{ float: "right"}} onClick={() => toggleEdit(post._id)} /> <img src={delete1} alt="dot" className="dot2"  style={{ float: "right"}} onClick={() => dispatch(deletePost({_id: post._id}))} />
             </div>
             ) : null}
-                
+
                </div>
               <br/>
               </div>
@@ -200,12 +200,12 @@ export default function Profile() {
                  <div className="comment-input" >
                    <input type="text" placeholder="Write a comment" value={content1} onChange={e => setContent1(e.target.value)} />
     <button onClick={() => handleEdit(post)} >Edit</button>
-                
+
                   </div>
-          
+
     ) : <Post content={post.content} /> }
 
-              
+
                           {post.type === "image" ?
                <img src={post.media} alt="" /> : null }
           {post.type === "video" ? <video src={post.media} controls /> : null}
@@ -215,7 +215,7 @@ export default function Profile() {
               <div className="postNumber">
                 <span>{post?.likes.length}</span>
                 {post?.likes?.includes(auth._id) ? <img src={likeBlue} alt="like" width="25px" height="25px" onClick={() => dispatch(likePost({postId: post._id, userId: auth._id}))} /> : <img src={like} alt="like" width="25px" height="25px" onClick={() => dispatch(likePost({postId: post._id, userId: auth._id, userGetId: post.userId}))} /> }
- 
+
               </div>
                 <div className="postNumber">
                 <span>{post.dislikes.length}</span>
@@ -227,7 +227,7 @@ export default function Profile() {
                 { post?.favs?.includes(auth._id) ? <img src={favBlue} alt="bookmark" width="25px" height="25px" onClick={() => dispatch(favPost({postId: post._id, userFavId: auth._id, usernamePost: post.usernamePost, userImage: post.userImage, type: post.type, content: post.content, media: post.media}))} /> : <img src={bookmark} alt="bookmark" width="25px" height="25px" onClick={() => dispatch(favPost({postId: post._id, userFavId: auth._id, usernamePost: post.usernamePost, userImage: post.userImage, type: post.type, content: post.content, media: post.media}))} />}
               </div>
              </div>
-        
+
             ))}
           <br/><br/><br/><br/>
           </div>  
@@ -283,9 +283,9 @@ const CopyLinkButton = ({ postId, setCopied, copied }) => {
 };
 
 function Setting({setting}) {
-    
+
   return (
-      
+
          <div className={`dropdownmenu10`} ref={setting}>
              <Link to="/fav" className="dropdownitem10" >
                <img src={favBlue} alt="overview" />

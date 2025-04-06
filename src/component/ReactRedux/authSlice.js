@@ -196,11 +196,7 @@ export const replyFriend = createAsyncThunk("auth/reply", async (values, {reject
 })
 export const deleteFriend = createAsyncThunk("auth/unfriend", async (values, {rejectWithValue}) => {
    try{
-      const response = await axios.delete(`${import.meta.env.VITE_BACKEND}/user/friend/${values.user1}/${values.user2}/delete`, {
-       user1: values.user1,
-       user2: values.user2,
-    
-     })
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND}/user/friend/${values.user1}/${values.user2}/delete`)
      return response.data
    } catch (error) {
      console.log(error.response.data)
