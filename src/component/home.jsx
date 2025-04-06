@@ -31,25 +31,25 @@ export default function Home() {
            <img src={auth.image} alt="user" loading="lazy"/>
            <span >{auth.username}</span>
           </Link>
-          <div className="menu-item">
+          <Link to="/" className="menu-item">
            <img src={home} alt="home" loading="lazy" width="40px" />
   <span>Home</span>
-          </div>
-           <div className="menu-item">
+          </Link>
+           <Link to="/watch" className="menu-item">
               <img src={watch} alt="home" loading="lazy" width="40px" />
            <span>Watch</span>
-             </div>
-           <div className="menu-item">
+             </Link>
+           <Link to="/fav" className="menu-item">
               <img src={fav} alt="home" loading="lazy" width="40px" />
            <span>Favourite Post</span>
-             </div>
-           <div className="menu-item">
+             </Link>
+           <Link to="/setting" className="menu-item">
               <img src={setting} alt="home" loading="lazy" width="40px" />
            <span>Setting</span>
-             </div>
+           </Link>
            <br/>
            <hr/>
-           <h3>Your Lastest Post</h3>
+           <h2>Your Lastest Post</h2>
          </div>
        </div>
       </Grid>

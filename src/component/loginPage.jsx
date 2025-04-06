@@ -40,7 +40,7 @@ export default function LoginPage() {
        <span style={{color: "red"}}>{auth.loginError}</span>
       )  : null}
       <br/>
-       <a href="#" className="Link">Forgot password?</a>
+       <Link to="/verify" className="Link">Forgot password?</Link>
 
        <button className="btn">Login</button>
       <div className="register-link">

@@ -1,39 +1,3 @@
-.homePage {
-  width: 100%;
-  padding-bottom: 120px;
-}
-.upload-container {
-  display: flex;
-  flex-direction: column;
-}
-  .upload-btn {
-    width: 50px;
-    height: 50px;
-    background-image: url("./image.png"); // Đường dẫn ảnh làm nút
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
-    transition: transform 0.2s;
-    
-    
-  }
-
-  input[type="file"] {
-   display: none;
-  }
-
-  .preview {
-    margin-top: 10px;
-    
-  }
-.preview img, video {
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 1px solid black;
-}
-
 .postNumber {
   display: flex;
 }
@@ -92,11 +56,9 @@
 }
 .post-user .userImage {
   width: 60px;
-  height: 60px;
   border-radius: 50%;
-  
 }
-.post-user p {
+.post-user h3 {
   margin-left: 10px;
   margin-bottom: 1px;
   font-weight: 700;

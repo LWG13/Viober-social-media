@@ -1,5 +1,6 @@
 .postDetail {
   width: 100%;
+  
   padding: 5px;
 }
 .postNav{
@@ -111,17 +112,29 @@ border-radius: 10px;
 }
 .comment-item {
   display: flex;
+
    margin-top: 40px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }
-.comment-item img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+.comment-item2 {
+  display: flex;
+  margin-left: 40px;
+   margin-top: 40px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
-.comment-item .comment-box {
+
+ .comment-box img video{
+
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.comment-box {
   display: flex;
   flex-direction: column;
   height: auto;
@@ -129,9 +142,10 @@ border-radius: 10px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: pre-wrap;
- 
+
 }
-.post-comment .comment-item .comment-box .comment-chat {
+
+ .comment-chat {
   padding: 10px;
   border-radius: 10px;
   background: #d4d4d4;
@@ -139,11 +153,11 @@ border-radius: 10px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: pre-wrap;
-  width: 250px;
+  width: 90%;
 
 
 }
-.post-comment .comment-item .comment-box .comment-chat1 {
+.comment-chat1 {
   padding: 10px;
   border-radius: 10px;
   background: #d4d4d4;
@@ -151,13 +165,13 @@ border-radius: 10px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: pre-wrap;
-  width: 180px;
+  width: 90%;
 
 
 }
-.comment-item .comment-box .comment-feature {
-  dispay: flex;
-  
+.comment-feature {
+  display: flex;
+  width: 100%;
 }
 .comment-item .comment-box .comment-feature button {
    margin-left: 30px;
@@ -166,7 +180,26 @@ border-radius: 10px;
   color: white;
   background: #4169E1;
   height: 30px;
-  width: 70px;
+  width: 30%;
   padding: 5px;
   border-radius: 5px;
+}
+.comment-item2 .comment-box .comment-feature button {
+   margin-left: 30px;
+  outline: none;
+  border: none;
+  color: white;
+  background: #4169E1;
+  height: 30px;
+  width: 30%;
+  padding: 5px;
+  border-radius: 5px;
+}
+.post-user {
+  text-decoration: none;
+}
+.post-user .userImage{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }

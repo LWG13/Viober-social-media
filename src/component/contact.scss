@@ -1,0 +1,27 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+  margin-top: 90px;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  height: 80vh
+}
+.contact textarea {
+
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+.contact button {
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  outline: none;
+  border: none;
+  background: #4169E1;
+  margin-top: 50px;
+}

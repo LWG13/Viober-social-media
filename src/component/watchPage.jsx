@@ -1,6 +1,8 @@
-import "./homePage.scss"
+import "./watchPage.scss"
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import {useSelector, useDispatch} from "react-redux"
 import { Link } from "react-router-dom"
+import dislikeBlue from "./dislikeBlue.png"
 import likeBlue from "./likeBlue.png"
 import { likePost, dislikePost, favPost} from "./ReactRedux/authSlice.js"
 import like from "./like.png"
@@ -8,25 +10,25 @@ import dislike from "./dislike.png"
 import { useState } from "react"
 import link from "./link.png"
 import bookmark from "./bookmark.png"
-import bookmarkBlue from "./favBlue.png"
 import comment from "./comment.png"
 import { useInfiniteQuery, useQuery} from "react-query"
-import axios from "axios"
-import CreatePost from "./createPost.jsx"
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useRef, useEffect } from 'react';
-import dislikeBlue from "./dislikeBlue.png"
 import { useInView } from 'react-intersection-observer';
+import bookmarkBlue from "./favBlue.png"
+
+import axios from "axios"
 
 
-export default function HomePage() {
-  const [copied, setCopied] = useState(false)
-   
+export default function WatchPage() {
+  const { ref, inView } = useInView()
+  
+    const [copied, setCopied] = useState(false)
   const auth = useSelector(state => state.auth)
-  const fetchData = ({page = 1}) => {
-      return axios.get(`${import.meta.env.VITE_BACKEND}/post/posts?page=${page}`)
-  }
   const dispatch = useDispatch()
+  
+  const fetchData = ({page = 1}) => {
+      return axios.get(`${import.meta.env.VITE_BACKEND}/post/posts/watch?page=${page}`)
+  }
   const {
     data,
     fetchNextPage,
@@ -39,8 +41,6 @@ export default function HomePage() {
       return lastPage?.data?.length > 0 ? allPages?.data?.length + 1 : undefined;
     }
   });
-  const { ref, inView } = useInView()
-  console.log(inView)
   const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString('en-EN', {
     day: 'numeric',
@@ -48,14 +48,13 @@ export default function HomePage() {
     year:"numeric"
   });
 };
-  useEffect(() => {
+ useEffect(() => {
     if(inView && hasNextPage) fetchNextPage()
   }, [inView, hasNextPage])
-  
-  
+ 
   return(
-    <div className="homePage" >
-       <CreatePost  />     
+     <div className="homePage" >   
+       <h1>Watch Video </h1>
       {data?.pages?.map((page, i) => (
        <div key={i} >
          {page?.data?.map(post => (
@@ -84,10 +83,12 @@ export default function HomePage() {
               <div className="postNumber">
                 <span>{post?.likes?.length}</span>
                 {post?.likes?.includes(auth._id) ? <img src={likeBlue} alt="like" width="25px" height="25px" onClick={() => dispatch(likePost({postId: post._id, userId: auth._id}))} /> : <img src={like} alt="like" width="25px" height="25px" onClick={() => dispatch(likePost({postId: post._id, userId: auth._id, userGetId: post.userId}))} /> }
+ 
               </div>
                 <div className="postNumber">
                 <span>{post.dislikes?.length}</span>
-                  {post?.dislikes?.includes(auth._id) ? <img src={dislikeBlue} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: post._id, userId: auth._id}))} /> : <img src={dislike} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: post._id, userId: auth._id}))} />}
+               {post?.dislikes?.includes(auth._id) ? <img src={dislikeBlue} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: post._id, userId: auth._id}))} /> : <img src={dislike} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: post._id, userId: auth._id}))} />}
+
                 </div>
                <img src={comment} alt="comment" width="25px" height="25px" />
                <CopyLinkButton postId={post._id} setCopied={setCopied} copied={copied} key={post._id} />
@@ -104,10 +105,7 @@ export default function HomePage() {
     </div>
     </div>
   )
-
 }
-
-
 
 const Post = ({ content, maxLength = 120 }) => {
   const [isExpanded, setIsExpanded] = useState(false);

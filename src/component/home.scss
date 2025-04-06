@@ -14,13 +14,13 @@
   margin-top: 94px;
   background: #d4d4d4;
   font-family: "Poppins", sans-serif;
+  animation: viober 1.5s;
+  display: flex;
+  align-items: center;
 }
 .left{
-  top: 0;
-  left: 0;
-  bottom: 0;
-  position: fixed;
-  margin-top: 100px;
+  height: 100vh;
+  width: 100%;
   z-index: 0;
   
 }
@@ -35,6 +35,8 @@
   display: flex; 
   width: 100%;
   padding: 5px;
+  text-decoration: none;
+  color: black;
 }
 .left .menu .user img {
   width: 40px;
@@ -45,6 +47,8 @@
   padding: 10px;
   display: flex;
   margin-top: 30px;
+  text-decoration: none;
+  color: black
 }
 .left .menu .menu-item img { 
   width: 35px;
@@ -54,6 +58,17 @@
   margin-top: 11px;
   margin-left: 10px;
   font-weight: 600;
+}
+@keyframes viober {
+    0%{
+      opacity: 0;
+      margin-top: 180px;
+      
+    }
+    100%{
+      opacity: 1;
+      margin-top: 94px;
+    }
 }
 .left .menu .user span {
  font-size: 20px;

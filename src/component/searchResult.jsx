@@ -1,6 +1,9 @@
-import "./homePage.scss"
-import {useSelector, useDispatch} from "react-redux"
+import "./searchResult.scss"
 import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useRef, useEffect} from 'react';
+import dislikeBlue from "./dislikeBlue.png"
 import likeBlue from "./likeBlue.png"
 import { likePost, dislikePost, favPost} from "./ReactRedux/authSlice.js"
 import like from "./like.png"
@@ -10,55 +13,40 @@ import link from "./link.png"
 import bookmark from "./bookmark.png"
 import bookmarkBlue from "./favBlue.png"
 import comment from "./comment.png"
-import { useInfiniteQuery, useQuery} from "react-query"
-import axios from "axios"
-import CreatePost from "./createPost.jsx"
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useRef, useEffect } from 'react';
-import dislikeBlue from "./dislikeBlue.png"
-import { useInView } from 'react-intersection-observer';
+import back from "./back.png"
 
-
-export default function HomePage() {
-  const [copied, setCopied] = useState(false)
-   
+export default function SearchResult() {
   const auth = useSelector(state => state.auth)
-  const fetchData = ({page = 1}) => {
-      return axios.get(`${import.meta.env.VITE_BACKEND}/post/posts?page=${page}`)
-  }
+  const [copied, setCopied] = useState(false)
   const dispatch = useDispatch()
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ['posts'],
-    queryFn: fetchData,
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage?.data?.length > 0 ? allPages?.data?.length + 1 : undefined;
-    }
-  });
-  const { ref, inView } = useInView()
-  console.log(inView)
-  const formatDate = (dateString) => {
+   const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString('en-EN', {
     day: 'numeric',
     month:"short",
     year:"numeric"
   });
 };
-  useEffect(() => {
-    if(inView && hasNextPage) fetchNextPage()
-  }, [inView, hasNextPage])
-  
-  
   return(
-    <div className="homePage" >
-       <CreatePost  />     
-      {data?.pages?.map((page, i) => (
-       <div key={i} >
-         {page?.data?.map(post => (
+    <div className="searchResult" >
+      <div className="postNav" >
+          <Link to="/" className="goback" >
+           <img src={back} alt="go back" width="50px" />
+          </Link>
+
+           </div>
+      <h1>Search Result</h1>
+      {auth?.userResult?.map(user => (
+      <div to={`/profile/${user._id}`} className="userResult" >
+        <Link to={`/profile/${user._id}`} >
+         <img src={user.image} alt="avatar" /> 
+        </Link>  
+         <div className="userDetail" >
+          <h2>{user.username}</h2>
+          <button>Send Friend</button>
+         </div>
+      </div>
+      ))}
+      {auth?.postResult?.map(post => (
         <div style={{background: "white", display: "flex", flexDirection: "column", padding: "10px", marginTop: "10px", borderRadius: "5px",wordWrap: "break-word",
                     overflowWrap: "break-word",
                     whiteSpace: "pre-wrap" }}>
@@ -84,10 +72,12 @@ export default function HomePage() {
               <div className="postNumber">
                 <span>{post?.likes?.length}</span>
                 {post?.likes?.includes(auth._id) ? <img src={likeBlue} alt="like" width="25px" height="25px" onClick={() => dispatch(likePost({postId: post._id, userId: auth._id}))} /> : <img src={like} alt="like" width="25px" height="25px" onClick={() => dispatch(likePost({postId: post._id, userId: auth._id, userGetId: post.userId}))} /> }
+ 
               </div>
                 <div className="postNumber">
                 <span>{post.dislikes?.length}</span>
-                  {post?.dislikes?.includes(auth._id) ? <img src={dislikeBlue} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: post._id, userId: auth._id}))} /> : <img src={dislike} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: post._id, userId: auth._id}))} />}
+               {post?.dislikes?.includes(auth._id) ? <img src={dislikeBlue} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: post._id, userId: auth._id}))} /> : <img src={dislike} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: post._id, userId: auth._id}))} />}
+
                 </div>
                <img src={comment} alt="comment" width="25px" height="25px" />
                <CopyLinkButton postId={post._id} setCopied={setCopied} copied={copied} key={post._id} />
@@ -96,18 +86,9 @@ export default function HomePage() {
         
         </div>
          ))}
-       </div>
-      ))}
-       <div ref={ref} style={{ height: '20px', background: 'transparent' }} >
-
-      {isFetchingNextPage && <p>Đang tải...</p>}
-    </div>
     </div>
   )
-
 }
-
-
 
 const Post = ({ content, maxLength = 120 }) => {
   const [isExpanded, setIsExpanded] = useState(false);

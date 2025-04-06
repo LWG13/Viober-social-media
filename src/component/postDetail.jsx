@@ -3,13 +3,17 @@ import back from "./back.png"
 import {useSelector, useDispatch} from "react-redux"
 import { useParams, Link } from "react-router-dom"
 import like from "./like.png"
+import likeBlue from "./likeBlue.png"
+import dislikeBlue from "./dislikeBlue.png"
 import dislike from "./dislike.png"
 import link from "./link.png"
 import bookmark from "./bookmark.png"
 import comment1 from "./comment.png"
 import { useQuery } from "react-query"
 import axios from "axios"
-import { likePost, dislikePost, commentPost, replyComment } from "./ReactRedux/authSlice.js"
+import { likePost, dislikePost, commentPost, replyComment, deleteComment, deleteReply, favPost } from "./ReactRedux/authSlice.js"
+import bookmarkBlue from "./favBlue.png"
+
 
 
 import { useState } from "react"
@@ -18,12 +22,19 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 export default function PostDetail() {
   const [copied, setCopied] = useState(false)
   const [reply, setReply] = useState({})
+  const [replyList, setReplyList] = useState({})
   const toggleReply = (commentId) => {
   setReply(prev => ({
     ...prev,
     [commentId]: !prev[commentId], // Chỉ thay đổi trạng thái của commentId được bấm
   }));
 };
+  const toggleList = (commentId) => {
+    setReplyList(prev => ({
+      ...prev,
+      [commentId]: !prev[commentId], // Chỉ thay đổi trạng thái của commentId được bấm
+    }));
+  };
   const [content1, setContent1] = useState("")
   const id = useParams()
   console.log(id.postId)
@@ -81,6 +92,7 @@ export default function PostDetail() {
   })
   const userData = {
     userId: auth._id,
+    userGetId: data?.data?.userId, 
     usernamePost: auth.username,
     userImage: auth.image,
     type,
@@ -114,6 +126,7 @@ const handleReply = async (id) => {
 
   const handleSubmit = () => {
     dispatch(commentPost(userData))
+    comment?.data?.push(userData)
     setContent("")
     setMedia("")
   }
@@ -123,7 +136,7 @@ const handleReply = async (id) => {
   return(
     <div className="postDetail">
 
-      <div className="post-posting"  key={data?.data._id}>
+      <div className="post-posting"  key={data?.data?._id}>
         <div className="postNav" >
           <Link to="/" className="goback" >
            <img src={back} alt="go back" width="50px" />
@@ -131,35 +144,35 @@ const handleReply = async (id) => {
 
            </div>
            <br/><hr style={{color: "black", background: "black" }} />
-              <div className="post-user">
-                <img src={data?.data.userImage} alt="profile" />
+              <Link to={`/profile/${data?.data?.userId}`} className="post-user">
+                <img src={data?.data?.userImage} alt="profile" className="userImage" />
                 <div >
-                <h3>{data?.data.usernamePost}</h3>
-                <span>{formatDate(data?.data.createdAt)}</span>
+                <p>{data?.data?.usernamePost}</p>
+                <span>{formatDate(data?.data?.createdAt)}</span>
 
                 </div>
 
 
-               </div>
-              <Post content={data?.data.content} />
-              {data?.data.type === "image" ?
-               <img src={data?.data.media} alt="" /> : null }
-          {data?.data.type.type === "video" ? <video src={data?.data.media} controls /> : null}
+               </Link>
+              <Post content={data?.data?.content} />
+              {data?.data?.type === "image" ?
+               <img src={data?.data?.media} alt="" /> : null }
+          {data?.data?.type === "video" ? <video src={data?.data?.media} controls /> : null}
         <br/>
               <hr/>
               <div className="post-feature">
               <div className="postNumber">
                 <span>{data?.data?.likes?.length}</span>
-                <img src={like} alt="like" width="25px" height="25px" onClick={() => dispatch(likePost({postId: data?.data._id, userId: auth._id}))} /> 
+                {data?.data?.likes?.includes(auth._id)? <img src={likeBlue} alt="like" width="25px" height="25px" onClick={() => dispatch(likePost({postId: data?.data?._id, userId: auth._id}))} /> : <img src={like} alt="like" width="25px" height="25px" onClick={() => dispatch(likePost({postId: data?.data?._id, userId: auth._id, userGetId: data?.data?.userId}))} /> }
               </div>
                 <div className="postNumber">
                 <span>{data?.data?.dislikes?.length}</span>
-               <img src={dislike} alt="dislike" width="25px" height="25px" onClick={() => dispatch(dislikePost({postId: data?.data._id, userId: auth._id}))} />
+                  { data?.data?.dislikes?.includes(auth._id) ? <img src={dislikeBlue} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: data?.data?._id, userId: auth._id}))} /> : <img src={dislike} alt="dislike" width="22px" height="22px" onClick={() => dispatch(dislikePost({postId: data?.data?._id, userId: auth._id}))} /> }
                 </div>
 
                <img src={comment1} alt="link" width="25px" height="25px" />
-                <CopyLinkButton postId={data?.data._id} setCopied={setCopied} copied={copied} />
-                <img src={bookmark} alt="bookmark" width="25px" height="25px" />
+                <CopyLinkButton postId={data?.data?._id} setCopied={setCopied} copied={copied} />
+                { data?.data?.favs?.includes(auth._id) ? <img src={bookmarkBlue} alt="bookmark" width="25px" height="25px" onClick={() => dispatch(favPost({postId: data?.data?._id, userFavId: auth._id, usernamePost: data?.data?.usernamePost, userImage: data?.data?.userImage, type: data?.data?.type, content: data?.data?.content, media: data?.data?.media}))} /> : <img src={bookmark} alt="bookmark" width="25px" height="25px" onClick={() => dispatch(favPost({postId: data?.data?._id, userFavId: auth._id, usernamePost: data?.data?.usernamePost, userImage: data?.data?.userImage, type: data?.data?.type, content: data?.data?.content, media: data?.data?.media}))} />}
 
               </div>
             <br/>
@@ -189,42 +202,67 @@ const handleReply = async (id) => {
         )}
           <br/>
               {comment?.data?.map(comment =>  (
+      <div>
                <div className="comment-item" key={comment._id}>
-                 <img src={comment.userImage} alt="image" />
+                
+                 <img src={comment.userImage} alt="image" style={{width: "80px", height: "80px", borderRadius: "50%"}} />
                <div className="comment-box" >
                <div className="comment-chat" >
                 <h2>{comment.usernamePost}</h2>
                  <Post content={comment.content} />
+               
                </div>
+                 {comment.type === "image" ? <img src={comment.media} alt="" style={{width: "100%",
+  marginTop: "30px",
+  marginBottom: "30px",
+  border: "1px solid black",
+  borderRadius: "5px"
+}}/> : null }
+                  {comment.type === "video" ? <video src={comment.media} alt="" style={{width: "100%",
+                                                  marginTop: "30px",
+                                                  marginBottom: "30px",
+                                                  border: "1px solid black",
+                                                  borderRadius: "5px"
+                                                }} controls /> : null }
                <div className="comment-feature" >
                 <span>{formatDate(comment.createdAt)}</span>
                 <button onClick={() => toggleReply(comment._id)} >Reply</button>
+                 {comment.userId === auth._id ? <button onClick={() => dispatch(deleteComment({commentId :comment._id}))}>delete</button> : null}
                </div>
-
+               <br/>
                  {reply[comment._id] && ( 
                  <div className="comment-input" >
                    <input type="text" placeholder="Write a comment" value={content1} onChange={e => setContent1(e.target.value)} />
                     <button onClick={() => handleReply(comment._id)} >Post</button>
                   </div>
     )}
-                 {comment.replies?.map(com => (
-                 <div className="comment-item" key={com._id}>
-                    <img src={com.userImage} alt="image" />
-                  <div className="comment-box" >
-                  <div className="comment-chat1" >
-                   <h2>{com.usernamePost}</h2>
-                    <Post content={com.content} />
-                  </div>
-                  <div className="comment-feature" >
-                   <span>{formatDate(com.createdAt)}</span>
-
-                  </div>
-                  </div>
-                 </div>
-
-                ))}
+    <h2 style={{border: "1px solid black", padding: "5px"}} onClick={() => toggleList(comment._id)}>{comment.replies?.length} Reply  </h2>
                </div>
+              
                </div>
+                {replyList[comment._id] && (    
+                   <div>
+                     {comment.replies?.map(com => (
+                          <div className="comment-item2" key={com._id}>
+                             <img src={com.userImage} alt="image" style={{borderRadius: "50%"}} height="80px" width="80px" />
+                           <div className="comment-box" >
+                           <div className="comment-chat1" >
+                            <h2>{com.usernamePost}</h2>
+                             <Post content={com.content} />
+                           </div>
+                           <div className="comment-feature" >
+                            <span>{formatDate(com.createdAt)}</span>
+                             {com.userId === auth._id ? <button onClick={() => dispatch(deleteReply({replyId: com._id, commentId: comment._id}))} >delete</button> : null}
+
+                           </div>
+                           </div>
+                          </div>
+
+                         ))}
+                   </div>
+                         )}
+
+      </div>
               ))}
 
 

@@ -59,8 +59,8 @@ export default function CreatePost() {
   return(
     <div className="post-create" >
              <div className="post-user">
-              <img src={auth.image} alt="profile" />
-              <h3>{auth.username}</h3>
+              <img src={auth.image} alt="profile"  className="userImage" />
+              <p>{auth.username}</p>
              </div>
               <br/><br/>
           <Form action ="" method="post"  control={control} onSubmit={handleSubmit}>
