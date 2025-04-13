@@ -86,7 +86,6 @@ function ChatUser() {
     createdAt: Date.now()
   };
 
-  
   dispatch(createChat(messageData));
   setContent("");
   setMedia("");
