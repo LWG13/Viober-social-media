@@ -88,13 +88,13 @@ export default function Profile() {
   }
   useEffect(() => {
    let handler = (e) => {
-     if(!settingRef.current.contains(e.target)){
+     if(settingRef.current && !settingRef.current.contains(e.target)){
        setMenu(false)
      }
    }
    document.addEventListener("mousedown", handler)
    return () => document.removeEventListener("mousedown",handler)
-  })
+  }, [])
    const dataUser ={
      username: auth.username,
      image: auth.image,
