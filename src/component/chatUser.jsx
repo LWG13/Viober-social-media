@@ -88,7 +88,6 @@ function ChatUser() {
 
   
   dispatch(createChat(messageData));
-  socket.emit("sendMessage", messageData);
   setContent("");
   setMedia("");
 };
