@@ -1,7 +1,7 @@
 import "./postDetail.scss"
 import back from "./back.png"
 import {useSelector, useDispatch} from "react-redux"
-import { useParams, Link } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import like from "./like.png"
 import likeBlue from "./likeBlue.png"
 import dislikeBlue from "./dislikeBlue.png"
@@ -16,7 +16,7 @@ import bookmarkBlue from "./favBlue.png"
 
 
 
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import { CopyToClipboard } from "react-copy-to-clipboard"; 
 
 export default function PostDetail() {
@@ -39,6 +39,12 @@ export default function PostDetail() {
   const id = useParams()
   console.log(id.postId)
   const auth = useSelector(state => state.auth)
+   const navigate = useNavigate()
+  useEffect(() => {
+    if(auth.userAuth === false) navigate("/login")
+  }, [navigate, auth.userAuth])
+  
+ 
   const dispatch = useDispatch()
   const { data } = useQuery({
     queryKey: ["post", id.postId],

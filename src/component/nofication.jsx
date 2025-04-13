@@ -7,10 +7,16 @@ import { nofiIsRead, replyFriend } from "./ReactRedux/authSlice.js"
 import { useSelector, useDispatch } from "react-redux"
 import { useQuery } from "react-query"
 import axios from "axios"
+import { useEffect } from "react"
 export default function Nofication() {
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  useEffect(() => {
+    if(auth.userAuth === false) navigate("/login")
+  }, [navigate, auth.userAuth])
+  
+ 
   const { data } = useQuery({
     queryKey: ["notification"],
     queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND}/post/nofication/${auth._id}`)

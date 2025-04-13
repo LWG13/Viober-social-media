@@ -42,7 +42,7 @@ export default function SearchResult() {
         </Link>  
          <div className="userDetail" >
           <h2>{user.username}</h2>
-          <button>Send Friend</button>
+          
          </div>
       </div>
       ))}

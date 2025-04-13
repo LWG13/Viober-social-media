@@ -2,12 +2,14 @@ import "./setting.scss"
 import { Grid } from "@mui/material"
 
 import { useState, useRef, useEffect } from "react"
+import { logoutUser } from "./ReactRedux/authSlice"
 import cato from "./cato.png"
 import back from "./backWhite.png"
 import { Link, Outlet } from "react-router-dom"
-import { useSelector} from "react-redux"
+import { useSelector, useDispatch} from "react-redux"
 export default function Setting() {
   const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch()
   const [menu, setMenu] = useState(false)
   return(
     <div className="Admin">
@@ -29,6 +31,9 @@ export default function Setting() {
 
                <li className="sidebar-list"><Link to="/setting">Account</Link></li>
                <li className="sidebar-list"><Link to="/setting/contact">Contact</Link></li>
+             <li className="sidebar-list" onClick={() => dispatch(logoutUser)}>
+               Log Out
+             </li>
 
 
            </div>

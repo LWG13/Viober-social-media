@@ -9,8 +9,6 @@ import { useState, useEffect, useRef } from "react"
 import edit from "./edit.png"
 import delete1 from "./delete.png"
 import { createChat, editChat, deleteChat } from "./ReactRedux/authSlice.js"
-import io from 'socket.io-client';
-import socket from "./socket.js"
 function ChatUser() {
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
@@ -24,7 +22,7 @@ function ChatUser() {
   const { data: message } = useQuery({
     queryKey: ["message", conversationId],
     queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND}/user/chat/message/${conversationId}`),
-    refetchInterval: 3000
+    refetchInterval: 4000
     
   })
   const formatDate = (dateString) => {
@@ -41,37 +39,6 @@ function ChatUser() {
       setLiveMessages(message.data)
     }
   }, [message])
-useEffect(() => {
-  // Chủ động kết nối
-  if (!socket.connected) {
-    console.log("Connecting socket...");
-    socket.connect();
-  }
-
-  socket.on("connect", (mjuh) => {
-    console.log("Connected to socket with ID:", socket.id);
-  });
-
-  socket.on("connect_error", (err) => {
-    console.error("Connection error:", err.message);
-  });
-
-  socket.on("disconnect", () => {
-    console.warn("Socket disconnected");
-  });
-
-  socket.on("newMessage", (data) => {
-    console.log("Received newMessage:", data);
-    setLiveMessages(prev => [...prev, data]);
-  });
-
-  return () => {
-    socket.off("connect");
-    socket.off("connect_error");
-    socket.off("disconnect");
-    socket.off("newMessage");
-  };
-}, []);
 
     const [content, setContent] = useState("")
     const [media, setMedia] = useState("")

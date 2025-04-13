@@ -1,6 +1,6 @@
 import "./profile.scss"
 import { Grid } from "@mui/material"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
 import setting1 from "./setting.png"
 import axios from "axios"
 import { useQuery } from "react-query"
@@ -8,7 +8,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import delete1 from "./delete.png"
 import edit from "./edit.png"
 import bookmark from "./bookmark.png"
-import { likePost, dislikePost, followUser, deletePost, favPost, editPost, editAccount, friendRequest, deleteFriend } from "./ReactRedux/authSlice.js"
+import { likePost, dislikePost, followUser, deletePost, favPost, editPost, editAccount, friendRequest, deleteFriend} from "./ReactRedux/authSlice.js"
 import { logoutUser } from "./ReactRedux/authSlice.js"
 import { useState, useRef, useEffect } from "react"
 import back from "./back.png"
@@ -38,6 +38,12 @@ export default function Profile() {
   const id = useParams()
   console.log(id)
   const auth = useSelector(state => state.auth)
+   const navigate = useNavigate()
+  useEffect(() => {
+    if(auth.userAuth === false) navigate("/login")
+  }, [navigate, auth.userAuth])
+  
+ 
   const { data } = useQuery({
    queryKey: ["profile", id.id],
     queryFn: () =>  axios.get(`${import.meta.env.VITE_BACKEND}/user/users/${id.id}`)
@@ -113,7 +119,7 @@ export default function Profile() {
 
                 </Link>
                 <img src={dot3} alt="dot" className="dot3" onClick={() => setMenu(true)} ref={settingRef}/>
-                {menu ? <Setting setting={settingRef} /> : null}
+                {menu ? <Setting setting={settingRef} dispatch={dispatch} /> : null}
                 <br/><br/>
                  </div>
       <div className="group">
@@ -284,7 +290,7 @@ const CopyLinkButton = ({ postId, setCopied, copied }) => {
   );
 };
 
-function Setting({setting}) {
+function Setting({setting, dispatch}) {
 
   return (
 
@@ -297,6 +303,9 @@ function Setting({setting}) {
               <img src={setting1} alt="overview" />
               <p  className="link10" >Setting</p>
             </Link>
+            <div className="dropdownitem10" onClick={() => dispatch(logoutUser())} >
+              <p  className="link10" >Log out</p>
+            </div>
 
          </div>
 

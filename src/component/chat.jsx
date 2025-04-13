@@ -1,4 +1,4 @@
-import { Outlet, useParams, Link} from "react-router-dom";
+import { Outlet, useParams, useNavigate, Link} from "react-router-dom";
 import back from "./back.png"
 import "./chat.scss";
 import { Grid } from "@mui/material"
@@ -6,10 +6,17 @@ import viober from "./viober.png"
 import { useQuery } from "react-query"
 import axios from "axios"
 import { useSelector } from "react-redux"
+import { useEffect } from "react"
 const Chat = () => {
   const { conversationId } = useParams();
+   const auth = useSelector(state => state.auth)
+
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(auth.userAuth === false) navigate("/login")
+  }, [navigate, auth.userAuth])
+  
   const isMobile = window.innerWidth <= 768;
-  const auth = useSelector(state => state.auth)
   const { data } = useQuery({
     queryKey: ["chat"],
     queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND}/user/chat?userId=${auth._id}`)
