@@ -28,6 +28,8 @@ import Setting from "./component/setting.jsx"
 import EditAccount from "./component/settingAccount.jsx"
 import SearchResult from "./component/searchResult.jsx"
 import Nofication from "./component/nofication.jsx"
+import Chat from "./component/chat.jsx"
+import ChatUser from "./component/chatUser.jsx"
 const queryClient = new QueryClient()
 const store = configureStore({
   reducer: {
@@ -109,6 +111,16 @@ const router = createBrowserRouter([
       {
        path: "/setting/contact",
        element: <Contact />
+      }
+    ]
+  },
+  {
+    path: "/chat",
+    element: <Chat />,
+    children: [
+      {
+        path: ":conversationId",
+        element: <ChatUser />
       }
     ]
   }

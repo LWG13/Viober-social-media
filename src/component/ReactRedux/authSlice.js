@@ -184,6 +184,10 @@ export const replyFriend = createAsyncThunk("auth/reply", async (values, {reject
       const response = await axios.post(`${import.meta.env.VITE_BACKEND}/user/friend/reply`, {
        user1: values.user1,
        user2: values.user2,
+       username1: values.username1,
+       username2: values.username2,
+       image1: values.image1,
+       image2: values.image2,
        reply: values.reply
      })
      return response.data
@@ -277,6 +281,54 @@ export const commentPost = createAsyncThunk("auth/comment", async (values, {reje
    }
 
 })
+
+export const createChat = createAsyncThunk("auth/chat", async (values, {rejectWithValue}) => {
+   try{
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND}/user/chat/message`, {
+       userPost: values.userPost,
+       username: values.username,
+       image: values.image,
+       message: values.message,
+       type: values.type,
+       roomId: values.roomId,
+       media: values.media
+     })
+     return response.data
+   } catch (error) {
+     console.log(error.response.data)
+      return rejectWithValue(error.response.data)
+
+   }
+
+})
+export const editChat = createAsyncThunk("auth/editchat", async (values, {rejectWithValue}) => {
+   try{
+      const response = await axios.put(`${import.meta.env.VITE_BACKEND}/user/chat/message/edit/${values._id}`, {
+       _id: values._id,
+       message: values.message
+     })
+     return response.data
+   } catch (error) {
+     console.log(error.response.data)
+      return rejectWithValue(error.response.data)
+
+   }
+
+})
+export const deleteChat = createAsyncThunk("auth/deleteChat", async (values, {rejectWithValue}) => {
+   try{
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND}/user/chat/message/delete/${values._id}`, {
+       _id: values._id,
+      })
+     return response.data
+   } catch (error) {
+     console.log(error.response.data)
+      return rejectWithValue(error.response.data)
+
+   }
+
+})
+
 export const replyComment = createAsyncThunk("auth/reply", async (values, {rejectWithValue}) => {
    try{
       const response = await axios.put(`${import.meta.env.VITE_BACKEND}/post/comment/reply/${values._id}`, {

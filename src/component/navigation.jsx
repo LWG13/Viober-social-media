@@ -59,7 +59,9 @@ export default function Navigation() {
           <div style={{width: "25px", height: "25px", background: "red", 
   fontSize:"20px", color: "white", borderRadius: "5px", marginTop: "10px", marginRight: "5px", display: "flex"}}><span>{data?.data?.length}</span></div>
           : null}
+         <Link to="/chat" >
          <img src={chat} alt="chat" loading="lazy" className="chat" />
+         </Link>
          <Link to={`/profile/${auth._id}`} className="item"  >
           <img src={auth.image} alt="profile" loading="lazy" className="profile1" />
          </Link>

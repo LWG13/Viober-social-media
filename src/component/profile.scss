@@ -55,6 +55,10 @@
 }
 .friend-list .userFriend p {
   font-size: 17px;
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  overflow: hidden;
+  width: 100%;
 }
 .info {
   display: flex;

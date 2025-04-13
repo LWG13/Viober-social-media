@@ -24,8 +24,8 @@ export default function Nofication() {
       console.error("Failed to log click:", error);
     }
   };
-  const handleReply = (user1, user2, reply) => {
-   dispatch(replyFriend({user1, user2, reply}))
+  const handleReply = (user1, username1, image1,  user2, username2, image2, reply) => {
+   dispatch(replyFriend({user1,  username1, image1, username2, image2, user2, reply}))
     
   }
   return(
@@ -46,24 +46,28 @@ export default function Nofication() {
         <div className="noti-content">
          <p>{noti.username} {noti.message}</p>
          <button onClick={() => handleReply(noti.userPostId, auth._id, "reject")} style={{outline: "none", border: "none", width: "90px", height: "40px", borderRadius: "5px", marginLeft: "10px", color: "black", background: "#bfbfbf"}}>Reject</button>
-         <button onClick={() => handleReply(noti.userPostId, auth._id, "accept")} style={{outline: "none", border: "none", width: "90px", height: "40px", borderRadius: "5px", marginLeft: "10px", color: "white", background: "#4169E1"}}>Accept</button>
+         <button onClick={() => handleReply(noti.userPostId, noti.username, noti.image, auth._id, auth.username, auth.image,  "accept")} style={{outline: "none", border: "none", width: "90px", height: "40px", borderRadius: "5px", marginLeft: "10px", color: "white", background: "#4169E1"}}>Accept</button>
         </div>
       </div>
       ) : null}
-      {noti?.isRead === false ? (
-      <Link to={`/${noti.postId}`} className="noti-box" onClick={(e) => handleClick(e, `/${noti.postId}`, noti._id)} key={noti._id}>
+
+      {noti?.isRead === false ? ( 
+      
+      <Link to={`/${noti.postId}`} className="noti-box" onClick={(e) => handleClick(e, `/${noti.postId}`, noti._id)} key={noti._id} style={{display:`${noti?.type === "friend request" ? "none" : "flex"}` }}>
         {noti.type === "like" ? <img src={likeNofi} alt="like" width="90px" height="90px" /> : <img src={commentNofi} alt="like" width="90px" height="90px" />}
         <div className="noti-content">
          <p>{noti.message}</p>
         </div>
-      </Link>) : (
-        <Link to={`/${noti.postId}`} className="noti-box1" onClick={(e) => handleClick(e, `/${noti.postId}`, noti._id)} key={noti._id}>
+      </Link>
+    ) : ( 
+        <Link to={`/${noti.postId}`} className="noti-box1" onClick={(e) => handleClick(e, `/${noti.postId}`, noti._id)} key={noti._id} style={{display:`${noti?.type === "friend request" ? "none" : "flex"}` }} >
         {noti.type === "like" ? <img src={likeNofi} alt="like" width="90px" height="90px" /> : <img src={commentNofi} alt="like" width="90px" height="90px" />}
         <div className="noti-content1">
          <p>{noti.message}</p>
         </div>
       </Link>
-      )} 
+       )}
+    
     </div>
       ))}
     </div>

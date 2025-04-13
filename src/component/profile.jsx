@@ -57,11 +57,13 @@ export default function Profile() {
   const [menu, setMenu] = useState(false)
   const { data : friend} = useQuery({
     queryKey:["friend"],
-    queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND}/user/friend/list?userId=${auth._id}&limit=6`)
+    queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND}/user/friend/list?userId=${data?.data?._id}&limit=6`),
+    refetchInterval: 2000
   })
   const { data : isFriend} = useQuery({
     queryKey:["friend1"],
-    queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND}/user/friend/isFriend/${auth._id}/${data?.data?._id}`)
+    queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND}/user/friend/isFriend/${auth._id}/${data?.data?._id}`),
+    refetchInterval: 2000
   })
   console.log("is: ", isFriend)
   const settingRef = useRef(null)

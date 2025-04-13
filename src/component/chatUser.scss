@@ -1,0 +1,257 @@
+.chat-room {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.chat-room-header {
+    padding: 10px;
+    background-color: white;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    height: 50px;
+    display: flex;
+    position: sticky;
+
+
+}
+.chat-room-header img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    
+}
+.chat-room .chat-room-down {
+  
+  padding: 5px;
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  
+  
+  
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-room-down .chat-room-input .chat-room-input1 {
+  display: flex;
+  background: white;
+ width: 73%;
+}
+.chat-room-down .chat-room-input .chat-room-input1 input {
+   width: 100%;
+  height: 48px;
+  border: none;
+  background: white;
+
+}
+.chat-room-input::focus {
+  border: none;
+}
+.chat-room-input1 .send {
+  width: 40px;
+  background: white;
+}
+.chat-room-input1 button {
+  width: 0px;
+  border: none;
+  background: white;
+  
+
+}
+.back2 img {
+  width: 40px;
+}
+.chat-room-input .upload-container {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  background: white;
+  height: 50px;
+}
+  .upload-btn {
+    width: 45px;
+    height: 45px;
+    background-image: url("./image.png"); // Đường dẫn ảnh làm nút
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    
+  
+  }
+
+  input[type="file"] {
+   display: none;
+  }
+
+  .preview {
+    margin-top: 10px;
+    
+  }
+.chat-room .chat-room-body {
+  
+  
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  overflow-y: auto;
+  
+}
+.ing22 {
+  width: 200px;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+  border: 1px solid black;
+  margin-left: 10px;
+ }
+.vineo22 {
+  width: 200px;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+  border: 1px solid black;
+  margin-left: 10px;
+}
+.edit-input {
+  width: 100%;
+  display: flex;
+  height: auto;
+}
+.edit-input input {
+  margin-right: 10px;
+  width: 100%;
+  height: 30px;
+  border-radius: 15px;
+  border: 0.5px solid black;
+  padding: 5px;
+  outline: none;
+}
+.edit-input button {
+  outline: none; 
+  border: none;
+  padding: 5px;
+  background-color: #4169E1;
+  color: white;
+border-radius: 10px;
+  width: 120px;
+}
+
+.post-image-video img {
+  margin-right: 10px;
+}
+.chat-room-header p {
+    font-size: 20px;
+
+}
+.chat-room .chat-room-body .messages {
+     height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+    padding: 16px;
+    padding-bottom: 40px;
+  overflow-y: auto;
+
+  
+}
+.chat-room .chat-room-down .chat-room-input {
+    position: sticky;
+    
+    bottom: 0;
+    
+    
+    
+    background: white;
+    padding: 5px;
+    height: 45px;
+
+    display:flex;
+
+}
+.chat-box {
+  display: flex;
+  align-items: flex-start;
+  margin: 24px 0;
+
+  &.left1 {
+    flex-direction: row;
+  }
+
+  &.right1 {
+    flex-direction: row-reverse;
+
+    .chat-box-content {
+      align-items: flex-end;
+      text-align: right;
+    }
+  }
+
+  .profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 10px;
+  }
+
+  .chat-box-content {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    border-radius: 12px;
+    max-width: 70%;
+
+    h2 {
+      font-size: 14px;
+      margin: 0 0 5px;
+      color: #555;
+    }
+
+    .chat-box-content-text {
+      background-color: #fff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-bottom: 5px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      width: 78%;
+    }
+
+    .img3, .video3 {
+      width: 150px;
+      border-radius: 10px;
+      margin-top: 5px;
+    }
+
+    span {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+  }
+  
+}
+
+@media only screen and (max-width: 850px) {
+  .chat-room .chat-room-down {
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+  }
+  .chat-room-header {
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
+}
+@media only screen and (min-width: 850px) {
+  .back2 img {
+    display: none;
+  }
+}

@@ -84,6 +84,25 @@ margin-left: 10px;
   height: 100vh;
   width: 100%;
 }
+.right .friendList{
+  display: flex;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+.right .friendList img {
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.right .friendList p {
+  font-size: 22px;
+  margin-left: 10px;
+}
+.right h1{
+  margin-left: 10px;
+}
 @media only screen and (max-width: 600px) {
   .left{
     display: none;
