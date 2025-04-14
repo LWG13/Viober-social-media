@@ -26,9 +26,6 @@ export default function Navigation() {
     dispatch(searchViober(search))
   }
    
-  useEffect(() => {
-    if(auth.userAuth === false) navigate("/login")
-  }, [navigate, auth.userAuth])
   
  
     useEffect(() => {
