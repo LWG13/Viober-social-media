@@ -40,9 +40,6 @@ export default function PostDetail() {
   console.log(id.postId)
   const auth = useSelector(state => state.auth)
    const navigate = useNavigate()
-  useEffect(() => {
-    if(auth.userAuth === false) navigate("/login")
-  }, [navigate, auth.userAuth])
   
  
   const dispatch = useDispatch()
