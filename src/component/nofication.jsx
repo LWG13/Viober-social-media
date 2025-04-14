@@ -12,10 +12,7 @@ export default function Nofication() {
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  useEffect(() => {
-    if(auth.userAuth === false) navigate("/login")
-  }, [navigate, auth.userAuth])
-  
+    
  
   const { data } = useQuery({
     queryKey: ["notification"],
