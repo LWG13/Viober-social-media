@@ -103,12 +103,6 @@ setEdit(prev => ({
     setEdit({})
     setEditText("")
   }
-   const containerRef = useRef(null);
-
-  // Khi component mount, scroll xuống cuối
-  useEffect(() => {
-    containerRef.current.scrollTop = containerRef.current.scrollHeight;
-  }, []);
   return (
     <div className="chat-room">
       <div className="chat-room-header">
@@ -119,7 +113,7 @@ setEdit(prev => ({
         <img src={data?.data?.image1 === auth.image ? data?.data?.image2 : data?.data?.image1} alt="back" style={{marginLeft: "10px" }}/>
         <p style={{marginLeft: "10px"}}>{data?.data?.username1 === auth.username ? data?.data?.username2 : data?.data?.username1}</p>
       </div>
-    <div className="chat-room-body" style={{height: `${media ? "79.5vh" : "85.5vh"}`}}ref={containerRef}>
+    <div className="chat-room-body" style={{height: `${media ? "79.5vh" : "85.5vh"}`}}>
       <div className="messages" >
         {liveMessages?.map(chat => (
         <div className={`chat-box ${chat.userPost === auth._id ? "right1" : "left1"}`} key={chat._id}>
