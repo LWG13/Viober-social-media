@@ -39,9 +39,6 @@ export default function Profile() {
   console.log(id)
   const auth = useSelector(state => state.auth)
    const navigate = useNavigate()
-  useEffect(() => {
-    if(auth.userAuth === false) navigate("/login")
-  }, [navigate, auth.userAuth])
   
  
   const { data } = useQuery({
