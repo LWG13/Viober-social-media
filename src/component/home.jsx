@@ -21,9 +21,6 @@ export default function Home() {
     queryKey:["friend"],
     queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND}/user/friend/list?userId=${auth._id}&limit=8`)
   })
-  useEffect(() => {
-    if(auth.userAuth === false) navigate("/login")
-  }, [navigate, auth.userAuth])
   console.log(auth)
   const logout = () => {
    dispatch(logoutUser())
