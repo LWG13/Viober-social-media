@@ -5,12 +5,19 @@ import { useState, useRef, useEffect } from "react"
 import { logoutUser } from "./ReactRedux/authSlice"
 import cato from "./cato.png"
 import back from "./backWhite.png"
-import { Link, Outlet } from "react-router-dom"
+import { Link, Outlet, useNavigate} from "react-router-dom"
 import { useSelector, useDispatch} from "react-redux"
-export default function Setting() {
+export default function Setting(){
+
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const [menu, setMenu] = useState(false)
+   const navigate = useNavigate()
+  useEffect(() => {
+    if(auth.userAuth === false) navigate("/login")
+  }, [navigate, auth.userAuth])
+  
+ 
   return(
     <div className="Admin">
       <div className="grid1">
