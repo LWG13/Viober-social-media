@@ -59,7 +59,9 @@ export default function Home() {
       </Grid>
        <Grid item xs={12} sm={8} md={6} lg={6} >
          <div className="mid">
+          <div style={{height: "100%", overflow-y: "auto", display: "flex", flexDirection: "column"}} >
            <Outlet/>
+          </div>
           </div>
        </Grid>
        <Grid item xs={0} sm={0} md={3} lg={3} >
