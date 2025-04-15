@@ -16,6 +16,7 @@
   font-family: "Poppins", sans-serif;
   animation: viober 1.5s;
   display: flex;
+  height: 100vh;
   align-items: center;
 }
 .left{
@@ -76,7 +77,9 @@
 margin-left: 10px;
 }
 .mid{
-  height: 100vh;
+  height: 100%;
+  overflow-y: auto;
+ 
   width: 100%;
   font-family: "Poppins", sans-serif;
 }
