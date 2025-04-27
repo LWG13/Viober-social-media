@@ -28,7 +28,7 @@ export default function Navigation() {
    
   
     useEffect(() => {
-    if(auth.userAuth === false) navigate("/login")
+    if(auth && auth.userAuth === false) navigate("/login")
   }, [navigate, auth.userAuth])
 
     useEffect(() => {
