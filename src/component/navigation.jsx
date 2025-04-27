@@ -28,9 +28,14 @@ export default function Navigation() {
    
   
     useEffect(() => {
-    if(auth && auth.userAuth === false) navigate("/login")
-  }, [navigate, auth.userAuth])
+  if (auth.userAuth === false) {
+    const timeout = setTimeout(() => {
+      navigate("/login");
+    }, 0); // delay nhẹ 0ms
 
+    return () => clearTimeout(timeout); // cleanup
+  }
+}, [navigate, auth.userAuth]);
     useEffect(() => {
   if (auth.searchSuccess) {
     navigate("/search-result");
