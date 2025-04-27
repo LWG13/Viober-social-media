@@ -36,10 +36,7 @@ export default function Navigation() {
     }, 1000); // Chỉ reset sau 1 giây để tránh mất dữ liệu khi quay lại
   }
 }, [auth.searchSuccess]);
-   useEffect(() => {
-    if(auth.userAuth === false) navigate("/login")
-  }, [navigate, auth.userAuth])
- 
+   
   return (
  <div style={{display: "flex", alignItems: "center", justifyContent: "center" }}>
     <div className="grid">
