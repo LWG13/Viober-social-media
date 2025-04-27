@@ -1,6 +1,6 @@
 import "./navigation.scss"
 import { Link, Outlet, useNavigate} from "react-router-dom"
-import {useState, useLayoutEffect} from "react"
+import {useState, useLayoutEffect, useEffect} from "react"
 import nofication from "./nofication.png"
 import { useQuery } from "react-query"
 import home from "./home.png"
