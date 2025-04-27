@@ -27,7 +27,10 @@ export default function Navigation() {
   }
    
   
- 
+    useEffect(() => {
+    if(auth.userAuth === false) navigate("/login")
+  }, [navigate, auth.userAuth])
+
     useEffect(() => {
   if (auth.searchSuccess) {
     navigate("/search-result");
