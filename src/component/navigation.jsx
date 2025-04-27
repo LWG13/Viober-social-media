@@ -50,7 +50,7 @@ export default function Navigation() {
   <span class="spinner-inner-2"></span>
   <span class="spinner-inner-3"></span>
 </div>) : <img src={searchBlue} alt="search" loading="lazy" onClick={() => handleSearch()} /> }
-       </div>
+       </div> 
        <div style={{padding: "7px", display: "flex"}} >
          
         <Link to="/notification" >
