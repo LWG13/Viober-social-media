@@ -1,6 +1,6 @@
 import "./navigation.scss"
 import { Link, Outlet, useNavigate} from "react-router-dom"
-import {useState, useEffect} from "react"
+import {useState, useLayoutEffect} from "react"
 import nofication from "./nofication.png"
 import { useQuery } from "react-query"
 import home from "./home.png"
@@ -27,7 +27,7 @@ export default function Navigation() {
   }
    
   
-    useEffect(() => {
+    useLayoutEffect(() => {
   if (auth.userAuth === false) {
     const timeout = setTimeout(() => {
       navigate("/login");
